@@ -24,7 +24,7 @@
  void main()
   {  
     int c;
-	fp.open("fixed.txt",ios::app);        //creating file fixed.txt
+	fp.open("fixed.txt",ios::app);       
 	fp.close();
       clrscr();
     while(1)
@@ -55,9 +55,9 @@
    {
 	fp.open("fixed.txt",ios::app);
 	insert();
-	fp<<buffer<<endl //inserting the data into the file from the buffer
+	fp<<buffer<<endl 
 	cout<<"\t**Record insertion successful**"<<endl; 
-                                     //using file pointer fp.
+                                     
 	fp.close();
 	getch();
 	clrscr();
@@ -73,7 +73,7 @@
 	cout<<"age";help();
 	cout<<"Branch";help();
 	int c=strlen(buffer);
-	for(int i=0;i<55-c;i++)       //Inserting filling character "!"
+	for(int i=0;i<55-c;i++)       
 	strcat(buffer,"!");
    }
 void help()
@@ -87,18 +87,18 @@ void unpack()
  {
 	fp.open("fixed.txt",ios::in);
 	fp.getline(buffer,60,'\n'); 
-                       //fp.getline:To get the first record from the file
+                      
 
 	cout<<"\t**Unpacked record**"<<endl;
 	cout<<"USN\t\tName\tSEM\tage\tBranch"<<endl;
 	while(!fp.eof())                             
-                      //execute till fp reaches end of file.
+                      
 	 {
 	  sscanf(buffer,"%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|",s.usn,s.name,s.sem,s.age,s.branch);
 	  cout<<s.usn<<"\t"<<s.name<<"\t"<<s.sem<<"\t"<<s.age<<"\t"<<s.branch<<"\n";
 	  fp.getline(buffer,60,'\n');
 	 }
-    fp.close(); //close the opened file.otherwise U'll get infinite loop.
+    fp.close(); 
     getch();
     clrscr();
  }
@@ -106,7 +106,7 @@ void unpack()
 void modify()
   {
 	char key[25],usn[25],modify[55];
-	int Notfound=1;				              	//Notfound:status flag.
+	int Notfound=1;				              	
 	cout<<"Enter the key to Modify (USN)\n";
 	cin>>key;
     fp.open("fixed.txt",ios::in);
@@ -116,29 +116,24 @@ void modify()
     while(!fp.eof())
      {
 	sscanf(buffer,"%[^|]|",usn);
-//scan the buffer to get the USN of the record.
-	if(strcmp(usn,key)!=0) 				        
-//if key not found,simply copy the buffer content to
-	    {					                     	//the new file.
+	if(strcmp(usn,key)!=0) 				  
+	    {					                     	
 		gp<<buffer<<endl;
 	    }
-	else						               //if found 
+	else						             
 		{
 		Notfound=0;
 		cout<<"\t**record found**"<<endl;
 		cout<<"Enter New data"<<endl;
-		insert();				              //take new data.
+		insert();				             
 		strcpy(modify,buffer); 
-                           //copy new data into the array "modify".
-		gp<<modify<<endl;				        
-                          //insert new data to the new file.
+		gp<<modify<<endl;				   
 		cout<<"\t**Record Modification successful**"<<endl;
 		}
 		fp.getline(buffer,60,'\n');
 
 	}
 	if(Notfound)						
-                         //if Notfound=1;record not found.
 		{
 		  cout<<"\tRecord not found  :("<<endl;
 		}
@@ -178,7 +173,7 @@ void search()
 	      fp.getline(buffer,60,'\n');
 		  if(fp.eof())			
 
-	   	   {				//so record not found.
+	   	   {				
 		  cout<<"\tRecord not found  :("<<endl;
 		   }
 	  }
