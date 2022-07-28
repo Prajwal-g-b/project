@@ -60,15 +60,15 @@
 	gp.open("RRN.txt",ios::in);
 	RRN=0;
 	
-	while(!gp.eof())			    //to get next RRN simply counting the number of lines 
-	 {					            //in the file.
+	while(!gp.eof())			    
+	 {					          
 	gp.getline(buffer,60,'\n');
 	RRN++;
 	 }
 	gp.close();
 	
 	insert();
-	fp<<RRN<<"|"<<buffer<<endl;		//before inserting new data,insert calculated RRN.
+	fp<<RRN<<"|"<<buffer<<endl;		
 	fp.close();
 	clrscr();
   }
